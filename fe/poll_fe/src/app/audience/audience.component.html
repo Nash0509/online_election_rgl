@@ -1,0 +1,39 @@
+<div class="audience-container">
+  <div class="glass-panel">
+    <header class="header">
+      <h1>Live Election Poll</h1>
+      <p>Cast your vote for the next representative</p>
+    </header>
+
+    <div *ngIf="!hasVoted; else votedTemplate" class="nominees-grid">
+      <div class="nominee-card" *ngFor="let nominee of nominees" (click)="castVote(nominee.id)">
+        <div class="avatar-container">
+          <img [src]="nominee.avatar" alt="{{nominee.name}}">
+        </div>
+        <div class="nominee-info">
+          <h2>{{nominee.name}}</h2>
+          <button class="vote-btn">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #votedTemplate>
+      <div class="voted-state">
+        <div class="success-icon">✓</div>
+        <h2>Thank you for voting!</h2>
+        <p>Your vote has been successfully recorded. You cannot vote again in this session.</p>
+        
+        <div class="current-results">
+          <h3>Current Results</h3>
+          <div class="result-item" *ngFor="let n of nominees">
+            <span class="name">{{n.name}}</span>
+            <span class="votes">{{n.votes}} votes</span>
+            <div class="progress-bar">
+              <div class="fill" [style.width]="(n.votes / 300 * 100) + '%'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
