@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./be
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
+
+  frontend:
+    build:
+      context: ./fe/poll_fe
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
