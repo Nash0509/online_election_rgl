@@ -13,24 +13,24 @@ export class AudienceComponent implements OnInit {
 
   constructor(private socketService: SocketService) {}
 
-  ngOnInit(): void {
-    const votedId = sessionStorage.getItem('votedFor');
+  ngOnInit() {
+    let votedId = sessionStorage.getItem('votedFor');
     if (votedId) {
       this.hasVoted = true;
-      this.votedFor = parseInt(votedId, 10);
+      this.votedFor = Number(votedId);
     }
 
-    this.socketService.getNominees().subscribe(data => {
-      this.nominees = data;
+    this.socketService.getNominees().subscribe((res: any) => {
+      this.nominees = res;
     });
   }
 
-  castVote(id: number): void {
+  castVote(id: any) {
     if (this.hasVoted) return;
     
     this.socketService.castVote(id);
     
-    sessionStorage.setItem('votedFor', id.toString());
+    sessionStorage.setItem('votedFor', String(id));
     this.hasVoted = true;
     this.votedFor = id;
   }

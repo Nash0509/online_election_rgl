@@ -57,31 +57,37 @@ export class AdminComponent implements OnInit {
 
   constructor(private socketService: SocketService) {}
 
-  ngOnInit(): void {
-    this.socketService.getNominees().subscribe(data => {
+  ngOnInit() {
+    this.socketService.getNominees().subscribe((data: any) => {
       this.nominees = data;
-      this.updateChartAndStats(data);
+      this.updateChart(data);
     });
   }
 
-  getLeadingCandidate(): Nominee | null {
-    if (!this.nominees || this.nominees.length === 0) return null;
-    return this.nominees.reduce((prev, current) => 
-      (prev.votes > current.votes) ? prev : current
-    );
+  getLeadingCandidate() {
+    if (!this.nominees.length) return null;
+    let lead = this.nominees[0];
+    for(let n of this.nominees) {
+      if(n.votes > lead.votes) {
+        lead = n;
+      }
+    }
+    return lead;
   }
 
-  private updateChartAndStats(data: Nominee[]): void {
-    this.totalVotes = data.reduce((sum, n) => sum + n.votes, 0);
+  updateChart(data: any) {
+    let sum = 0;
+    data.forEach((x: any) => sum += x.votes);
+    this.totalVotes = sum;
 
-    const labels = data.map(n => n.name);
-    const votes = data.map(n => n.votes);
+    let lbls = data.map((x: any) => x.name);
+    let vals = data.map((x: any) => x.votes);
 
     this.chartData = {
-      labels: labels,
+      labels: lbls,
       datasets: [
         { 
-          data: votes, 
+          data: vals, 
           label: 'Votes',
           backgroundColor: 'rgba(138, 43, 226, 0.7)',
           borderColor: 'rgba(138, 43, 226, 1)',
