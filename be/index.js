@@ -24,11 +24,11 @@ async function seed() {
   await Nominee.deleteMany({})
   
   let docs = [
-    { id: 1, name: 'Nishant Singh', votes: 0, avatar: 'https://i.pravatar.cc/150?u=nishant' },
-    { id: 2, name: 'Nitin Singh', votes: 0, avatar: 'https://i.pravatar.cc/150?u=nitin' },
-    { id: 3, name: 'Virat Kohli', votes: 0, avatar: 'https://i.pravatar.cc/150?u=virat' },
-    { id: 4, name: 'Prashant Kishore', votes: 0, avatar: 'https://i.pravatar.cc/150?u=prashant' },
-    { id: 5, name: 'Ram Navmi', votes: 0, avatar: 'https://i.pravatar.cc/150?u=ram' }
+    { id: 1, name: 'Nishant Singh', votes: 0, avatar: 'https://identicons.github.com/nishant.png' },
+    { id: 2, name: 'Nitin Singh', votes: 0, avatar: 'https://identicons.github.com/nitin.png' },
+    { id: 3, name: 'Virat Kohli', votes: 0, avatar: 'https://identicons.github.com/virat.png' },
+    { id: 4, name: 'Prashant Kishore', votes: 0, avatar: 'https://identicons.github.com/prashant.png' },
+    { id: 5, name: 'Ram Navmi', votes: 0, avatar: 'https://identicons.github.com/ram.png' }
   ]
   await Nominee.insertMany(docs)
 }
