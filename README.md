@@ -1,51 +1,40 @@
-# Online Live Polling System
+# online_election_rgl
 
-A real-time polling application allowing an audience to vote for nominees while providing an admin dashboard to visualize the live results.
+A live polling app built for elections. Users can vote for nominees and the results update in real time on the admin side.
 
-## Architecture
+## Tech Stack
 
-Built with modern scalability and maintainability in mind (SOLID & DRY principles):
-- **Frontend**: Angular 15, optimized with a multi-stage Docker build served via Nginx. Features premium UI and bidirectional socket communication.
-- **Backend**: Node.js & Express, utilizing Socket.io for instantaneous bidirectional data flow.
-- **Database**: MongoDB Cloud (Mongoose ODM) ensuring atomic operations and persistence.
+- Angular 15 (frontend)
+- Node.js + Express (backend)
+- Socket.io (real-time communication)
+- MongoDB Atlas (database)
+- Docker + Nginx (deployment)
 
-## Prerequisites
+## Running with Docker
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine.
-- Git (optional, if cloning).
+Make sure Docker Desktop is running, then from the root folder:
 
-## Quick Start (Docker)
+```bash
+docker-compose up --build -d
+```
 
-The easiest way to spin up the entire stack is using Docker Compose. This ensures zero environment conflicts.
+- Voting page: http://localhost
+- Admin dashboard: http://localhost/dashboard
 
-1. Open your terminal at the root directory of this project (where `docker-compose.yml` is located).
-2. Run the following command:
-   ```bash
-   docker-compose up --build -d
-   ```
-3. Once the containers are running:
-   - **Audience Voting Page**: Visit [http://localhost](http://localhost)
-   - **Admin Dashboard**: Visit [http://localhost/dashboard](http://localhost/dashboard)
+## Running locally
 
-*Note: The backend runs internally on port 3000 and is automatically connected via Socket.io.*
-
-## Manual Setup (Without Docker)
-
-If you prefer to run the application locally without Docker:
-
-### 1. Backend Setup
+**Backend:**
 ```bash
 cd be
 npm install
 node index.js
 ```
-*The backend will run on `http://localhost:3000`.*
 
-### 2. Frontend Setup
-Open a new terminal window:
+**Frontend** (new terminal):
 ```bash
 cd fe/poll_fe
 npm install
 npm start
 ```
-*The frontend will run on `http://localhost:4200`. Navigate to `http://localhost:4200` to view the app.*
+
+Frontend runs on port 4200, backend on port 3000.
