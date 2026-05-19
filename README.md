@@ -18,8 +18,8 @@ Make sure Docker Desktop is running, then from the root folder:
 docker-compose up --build -d
 ```
 
-- Voting page: http://localhost
-- Admin dashboard: http://localhost/dashboard
+- Voting page: http://localhost:4200
+- Admin dashboard: http://localhost:4200/dashboard
 
 ## Running locally
 
